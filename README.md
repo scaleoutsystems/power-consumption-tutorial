@@ -25,7 +25,7 @@ The following command will connect your client to the FEDn network specified in 
         -v $PWD/data/p2/:/var/data \ 
         -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz \ 
         ghcr.io/scaleoutsystems/power-consumption:main \ 
-        run client --secure=True --force-ssl -in client.yaml 
+        fedn run client --secure=True --force-ssl -in client.yaml 
 ```
 
 ### Clean up
