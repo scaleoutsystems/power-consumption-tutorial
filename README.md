@@ -1,6 +1,6 @@
 # Power consumption prediction (TensorFlow/Keras)
 
-This is an example of simple neural network regression model in federated settings. A normal high-end laptop or a workstation should be able to sustain a few clients. The data partitions are static based on four nodes. The example is based on the follwing article,  where time series data from two data centers in Sweden and Finland are used to predict (amongst other things) the relationship between CPU and Network usage and power consumption:   
+This is an example of simple neural network regression model in federated settings. A normal high-end laptop or a workstation should be able to sustain a few clients. The example is based on the follwing article, where time series data from two data centers in Sweden and Finland are used to predict (amongst other things) the relationship between CPU and Network usage and power consumption:   
 
 - Towards Smart e-Infrastructures, A Community Driven Approach Based on Real Datasets
 https://ieeexplore.ieee.org/document/9289758
