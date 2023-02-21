@@ -38,8 +38,8 @@ These instructions are for users that want to learn to deploy and intiatialize t
 ### Creating the federated learning network 
 There are two main options to deploy a FEDn network: 
 
-    1. Obtain a trial account in Scaleout Studio (SaaS). Contact Scaleout staff in our [Discord server](https://discord.gg/KMg4VwszAd) for this option. 
-    2. [Deploy a FEDn network from scratch](https://github.com/scaleoutsystems/fedn) on your own machine(s). 
+1. Obtain a trial account in Scaleout Studio (SaaS). Contact Scaleout staff in our [Discord server](https://discord.gg/KMg4VwszAd) for this option. 
+2. [Deploy a FEDn network from scratch](https://github.com/scaleoutsystems/fedn) on your own machine(s). 
 
 ### Preparing the environment, the compute package and the seed model.
 
