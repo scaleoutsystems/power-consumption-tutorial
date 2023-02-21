@@ -21,7 +21,7 @@ Here we assume that the FEDn network is up and running and you have obtained the
 The following command will connect your client to the FEDn network specified in client.yaml. Please fix the path of the power.npz and client.yaml files according to your local setup.
 
 ```sh
- docker run -d -v $PWD/client.yaml:/app/client.yaml \
+ docker run -v $PWD/client.yaml:/app/client.yaml \
         -v $PWD/data/p2/:/var/data \ 
         -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz \ 
         ghcr.io/scaleoutsystems/power-consumption:main \ 
