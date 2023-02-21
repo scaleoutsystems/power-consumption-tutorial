@@ -42,7 +42,11 @@ The data for this example is not available as open-scource. Please contact the S
 Here we assume that FEDn network is up and running and you have the client.yaml files. In case you are participating in the Scaleout's workshops, please contact the Scaleout support staff. Following command will connect you client to FEDn network. Please fix the path of the power.npz and client.yaml files according to your local setup.
 
 ```sh
- docker run -d -v $PWD/client.yaml:/app/client.yaml -v $PWD/data/p2/:/var/data -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz ghcr.io/scaleoutsystems/fedn/fedn:develop-mnist-keras run client --secure=True --force-ssl -in client.yaml
+ docker run -d -v $PWD/client.yaml:/app/client.yaml \
+        -v $PWD/data/p2/:/var/data \ 
+        -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz \ 
+        ghcr.io/scaleoutsystems/fedn/fedn:develop-power-consumption \ 
+        run client --secure=True --force-ssl -in client.yaml 
 ```
 
 ## Clean up
