@@ -43,7 +43,7 @@ There are two main options to deploy a FEDn network:
 
 ### Preparing the environment, the compute package and the seed model.
 
-Clone this repository. Locate into the directory, then:
+Clone above-mentioned FEDn repository in step-2. Locate into the directory, pick one of the available examples, then:
 
 Initialize a virtual enviroment with all of the required dependencies.
 ```sh
