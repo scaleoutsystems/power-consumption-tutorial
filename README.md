@@ -1,45 +1,24 @@
-# Predictive Maintenance (TensorFlow/Keras version)
-This is an example of simple neural network regression model in federated settings. A normal high-end laptop or a workstation should be able to sustain a few clients. The data partitions are static based on four nodes. We here assume working experience with containers, Docker and docker-compose. 
+# Power consumption prediction (TensorFlow/Keras)
 
-# Research Article:
-Towards Smart e-Infrastructures, A Community Driven Approach Based on Real Datasets
+This is an example of simple neural network regression model in federated settings. A normal high-end laptop or a workstation should be able to sustain a few clients. The data partitions are static based on four nodes. The example is based on the follwing article,  where time series data from two data centers in Sweden and Finland are used to predict (amongst other things) the relationship between CPU and Network usage and power consumption:   
+
+- Towards Smart e-Infrastructures, A Community Driven Approach Based on Real Datasets
 https://ieeexplore.ieee.org/document/9289758
 
-#### NOTE: The model in this example is a simpler version of the model used in the article.  
-
-#### NOTE: The dataset required for this example is not open-source. However, Scaleout support staff can provide more details. Feel free to contact us. 
-
-## Table of Contents
-- [Power Consumption Example (Keras version)](#power-consumption-example-keras-version)
-  - [Table of Contents](#table-of-contents)
-  - [Prerequisites](#prerequisites)
-  - [Running the example (pseudo-distributed)](#running-the-example-pseudo-distributed)
-  - [Clean up](#clean-up)
+The model in this example is a simplifed version of the model used in the article, to reduce the compute requirements client side. The dataset required for this example is not available on a public server. However, Scaleout support staff can provide you with the data. Feel free to contact us. 
 
 ## Prerequisites
+
 - [Python 3.8, 3.9 or 3.10](https://www.python.org/downloads)
 - [Docker](https://docs.docker.com/get-docker)
-- [Docker Compose](https://docs.docker.com/compose/install)
 
-## Running the example (pseudo-distributed)
-Clone FEDn and locate into this directory.
-```sh
-git clone https://github.com/scaleoutsystems/fedn.git
-cd fedn/examples/power-consumption-keras
-```
+The example assumes working experience with Docker. 
 
-### Preparing the environment, the local data, the compute package and seed model
+## Attach clients to an existing FEDn Network
 
-Start by initializing a virtual enviroment with all of the required dependencies.
-```sh
-bin/init_venv.sh
-bin/build.sh
-```
+Here we assume that the FEDn network is up and running and you have obtained the connection file (client.yaml). In case you are participating in a Scaleout workshop, you will obtain the file from the workshop organizer. If you are working on the tutorial on your own, complete the instructions below before connecting the client.
 
-The data for this example is not available as open-scource. Please contact the Scaleout support staff for further details. 
-
-### Attach clients 
-Here we assume that FEDn network is up and running and you have the client.yaml file. In case you are participating in the Scaleout's workshops, please contact the Scaleout support staff. The following command will connect your client to FEDn network. Please fix the path of the power.npz and client.yaml files according to your local setup.
+The following command will connect your client to the FEDn network specified in client.yaml. Please fix the path of the power.npz and client.yaml files according to your local setup.
 
 ```sh
  docker run -d -v $PWD/client.yaml:/app/client.yaml \
@@ -49,5 +28,40 @@ Here we assume that FEDn network is up and running and you have the client.yaml 
         run client --secure=True --force-ssl -in client.yaml 
 ```
 
-## Clean up
+### Clean up
 You can clean up by running `docker stop <container-ID>`.
+
+## Setting up the federation (model initiator) 
+
+These instructions are for users that want to learn to deploy and intiatialize the federated network (model initiator). 
+
+### Creating the federated learning network 
+There are two main options to deploy a FEDn network: 
+
+    1. Obtain a trial account in Scaleout Studio (SaaS). Contact Scaleout staff in our [Discord server](https://discord.gg/KMg4VwszAd) for this option. 
+    2. [Deploy a FEDn network from scratch](https://github.com/scaleoutsystems/fedn) on your own machine(s). 
+
+### Preparing the environment, the compute package and the seed model.
+
+Clone this repository. Locate into the directory, then:
+
+Initialize a virtual enviroment with all of the required dependencies.
+```sh
+bin/init_venv.sh
+```
+
+Build the compute package and seed model. 
+```sh
+bin/build.sh
+```
+You should now have two files, 'package.tar.gz' and 'seed.npz'. Initialize the FEDn network using these, and then follow instructions above to connect clients. 
+
+Build the environment (Docker image) 
+```sh
+docker build -t scaleoutsystems/power-consumption:main
+```
+
+(If you have not made local changes to the package and/or requirements.txt, you can also use the pre-build package available in this repository, ghcr.io/scaleoutsystems/power-consumption:main)
+
+You can now connect the client following the instructions above. Note that depending on how you deployed the network, you might need to modify some of the command line options to fedn. Refer to the [FEDn documentation](https://github.com/scaleoutsystems/fedn). 
+
