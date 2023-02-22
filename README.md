@@ -32,11 +32,11 @@ The following command will connect your client to the FEDn network specified in 
 ### Clean up
 You can clean up by running `docker stop <container-ID>`.
 
-## Setting up the federation (model initiator) 
+## Extra (not for workshop): Setting up the federation (model initiator) 
 
 These instructions are for users that want to learn to deploy and intiatialize the federated network (model initiator). 
 
-### Creating the federated learning network (not for workshop)
+### Creating the federated learning network
 There are two main options to deploy a FEDn network: 
 
 1. Obtain a trial account in Scaleout Studio (SaaS). Contact Scaleout staff in our [Discord server](https://discord.gg/KMg4VwszAd) for this option. 
