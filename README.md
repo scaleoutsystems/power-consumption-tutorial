@@ -28,6 +28,20 @@ The following command will connect your client to the FEDn network specified in 
         fedn run client --secure=True --force-ssl -in client.yaml 
 ```
 
+You can also build your own container and connect the client.
+
+```sh
+ docker build -t scaleoutsystems/power-consumption:main
+```
+
+```sh
+ docker run -v $PWD/client.yaml:/app/client.yaml \
+        -v $PWD/data/p2/:/var/data \
+        -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz \
+        scaleoutsystems/power-consumption:main \
+        fedn run client --secure=True --force-ssl -in client.yaml
+```
+
 ### Clean up
 You can clean up by running `docker stop <container-ID>`.
 
