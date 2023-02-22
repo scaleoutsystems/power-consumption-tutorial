@@ -36,7 +36,7 @@ You can clean up by running `docker stop <container-ID>`.
 
 These instructions are for users that want to learn to deploy and intiatialize the federated network (model initiator). 
 
-### Creating the federated learning network 
+### Creating the federated learning network (not for workshop)
 There are two main options to deploy a FEDn network: 
 
 1. Obtain a trial account in Scaleout Studio (SaaS). Contact Scaleout staff in our [Discord server](https://discord.gg/KMg4VwszAd) for this option. 
