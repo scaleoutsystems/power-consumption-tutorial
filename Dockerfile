@@ -6,8 +6,9 @@ RUN apk add --update --no-cache \
     build-base \
     python3-dev \
     py3-setuptools \
-    && pip install --no-cache-dir -r requirements.txt \
-    && pip install -e git+https://github.com/scaleoutsystems/fedn.git@develop#egg=fedn\&subdirectory=fedn
+    git \
+    && pip install -e git+https://github.com/scaleoutsystems/fedn.git@develop#egg=fedn\&subdirectory=fedn \
+    && pip install --no-cache-dir -r requirements.txt
 
 
 FROM python:3.8.10-alpine as build
