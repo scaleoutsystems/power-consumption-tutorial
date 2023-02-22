@@ -14,7 +14,7 @@ The model in this example is a simplifed version of the model used in the articl
 
 The example assumes working experience with Docker. 
 
-## Attach clients to an existing FEDn Network
+## Attach clients to an existing FEDn Network (for workshop)
 
 Here we assume that the FEDn network is up and running and you have obtained the connection file (client.yaml). In case you are participating in a Scaleout workshop, you will obtain the file from the workshop organizer. If you are working on the tutorial on your own, complete the instructions below before connecting the client.
 
