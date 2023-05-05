@@ -1,11 +1,11 @@
-# Power consumption prediction (TensorFlow/Keras)
+# Power consumption prediction for data centers (TensorFlow/Keras)
 
-This is an example of simple neural network regression model in federated settings. A normal high-end laptop or a workstation should be able to sustain a few clients. The example is based on the follwing article, where time series data from two data centers in Sweden and Finland are used to predict (amongst other things) the relationship between CPU and Network usage and power consumption:   
+This is an example of a neural network regression model in a federated setting. Time series data from two data centers in Sweden and Finland are used to predict the relationship between CPU and Network usage and power consumption. The tutorial is based on the following article that has more backgroud information on the use-case: 
 
 - Towards Smart e-Infrastructures, A Community Driven Approach Based on Real Datasets
 https://ieeexplore.ieee.org/document/9289758
 
-The model in this example is a simplifed version of the model used in the article, to reduce the compute requirements client side. The dataset required for this example is not available on a public server. However, Scaleout support staff can provide you with the data. Feel free to contact us. 
+The model in this example is a simplifed version of the model used in the article, to reduce the compute requirements client side. A normal laptop or a workstation should be able to sustain a few clients. The dataset required for this example is not available on a public server. However, Scaleout support staff can provide you with the data. Feel free to contact us. 
 
 ## Prerequisites
 
