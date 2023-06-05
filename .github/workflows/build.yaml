@@ -12,7 +12,7 @@ jobs:
 
   build_studio:
     name: Build studio
-    runs-on: alpine:latest #ubuntu-20.04
+    runs-on: ubuntu-20.04
     outputs:
       image: ${{ steps.meta.outputs.json }}
     permissions:
