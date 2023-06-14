@@ -1,3 +1,43 @@
+# Run nativly on your host (without docker)
+Clone this repository
+```
+git clone https://github.com/scaleoutsystems/Power-consumption-tutorial.git
+```
+Checkout native branch
+```
+git checkout native
+```
+
+Create virtual env (from root folder in repository)
+Linux:
+```
+bin/init_venv.sh
+```
+MacOS
+```
+bin/init_venv_macos.sh
+```
+
+
+Install FEDn into the virtual env
+```
+.power-consumption-keras/bin/pip install git+https://github.com/scaleoutsystems/fedn.git@master#egg=fedn\&subdirectory=fedn
+```
+
+Activate virtual env
+```
+source .power-consumption-keras/bin/activate
+```
+
+Specify where your local data is located (replace /path/to/)
+```
+export ENTRYPOINT_OPTS=--data_path=/path/to/power.npz
+```
+
+Start the client (assumes you have the client config file client.yaml)
+```
+fedn run client --secure=True --force-ssl -in client.yaml
+```
 # Power consumption prediction for data centers (TensorFlow/Keras)
 
 This is an example of a neural network regression model in a federated setting. Time series data from two data centers in Sweden and Finland are used to predict the relationship between CPU and Network usage and power consumption. The tutorial is based on the following article that has more backgroud information on the use-case: 
