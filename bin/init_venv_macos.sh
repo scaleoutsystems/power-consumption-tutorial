@@ -1,11 +1,10 @@
 #!/bin/bash
-set -e
 
 # Install virtualenv
-pip install virtualenv
+python3 -m pip install virtualenv
 
 # Init venv
-python -m virtualenv .power-consumption-keras
+python3 -m virtualenv .power-consumption-keras
 
 # Pip deps
 .power-consumption-keras/bin/pip install --upgrade pip
