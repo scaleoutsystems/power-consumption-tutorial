@@ -1,4 +1,4 @@
-#!./.power-consumption/bin/python
+#!./.power-consumption-keras/bin/python
 
 import json
 import os
