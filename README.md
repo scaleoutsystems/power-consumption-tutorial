@@ -16,6 +16,8 @@ The example assumes working experience with Docker.
 
 ## Attach clients to an existing FEDn Network (for workshop)
 
+### Using Docker (not for M1, M2 macosx)
+
 Here we assume that the FEDn network is up and running and you have obtained the connection file (client.yaml). In case you are participating in a Scaleout workshop, you will obtain the file from the workshop organizer. If you are working on the tutorial on your own, complete the instructions below before connecting the client.
 
 The following command will connect your client to the FEDn network specified in client.yaml. Please fix the path of the power.npz and client.yaml files according to your local setup.
@@ -29,8 +31,44 @@ The following command will connect your client to the FEDn network specified in 
  fedn run client --secure=True --force-ssl -in client.yaml 
 ```
 
-### Clean up
-You can clean up by running `docker stop <container-ID>`.
+### Nativly on your host (without docker)
+
+Clone this repository
+```
+git clone https://github.com/scaleoutsystems/Power-consumption-tutorial.git
+```
+
+Create virtual env (from root folder in the repository)
+
+On *Linux*:
+```
+bin/init_venv.sh
+```
+
+On *MacOS* (tested on M1 macs): 
+```
+bin/init_venv_macos.sh
+```
+
+Install FEDn into the virtual env
+```
+.power-consumption-keras/bin/pip install git+https://github.com/scaleoutsystems/fedn.git@master#egg=fedn\&subdirectory=fedn
+```
+
+Activate the virtual env
+```
+source .power-consumption-keras/bin/activate
+```
+
+Specify absolute path to your local data is located (replace /path/to/)
+```
+export ENTRYPOINT_OPTS=--data_path=/path/to/power.npz
+```
+
+Start the client (assumes you have the client config file client.yaml)
+```
+fedn run client --secure=True --force-ssl -in client.yaml
+```
 
 ## Extra (not for workshop): Setting up the federation (model initiator) 
 
@@ -39,7 +77,7 @@ These instructions are for users that want to learn to deploy and intiatialize t
 ### Creating the federated learning network
 There are two main options to deploy a FEDn network: 
 
-1. Obtain a trial account in Scaleout Studio (SaaS). Contact Scaleout staff in our [Discord server](https://discord.gg/KMg4VwszAd) for this option. 
+1. Obtain an account in Scaleout Studio. Apply here: [https://studio.scaleoutsystems.com/signup/](https://studio.scaleoutsystems.com/signup/) and contact Scaleout staff in the [Discord server](https://discord.gg/KMg4VwszAd) for this option. 
 2. [Deploy a FEDn network from scratch](https://github.com/scaleoutsystems/fedn) on your own machine(s). 
 
 ### Preparing the environment, the compute package and the seed model.
