@@ -1,4 +1,4 @@
-#!./.power-consumption-keras/bin/python
+#!./.power-consumption/bin/python
 
 import json
 import os
@@ -128,4 +128,3 @@ if __name__ == '__main__':
         'validate': validate,
         '_get_data_path': _get_data_path,  # for testing
     })
-
