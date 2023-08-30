@@ -23,7 +23,7 @@ The following command will connect your client to the FEDn network specified in 
 ```sh
  docker run \
  -v $PWD/client.yaml:/app/client.yaml \
- -v $PWD/data/p2/:/var/data \
+ -v $PWD/data:/var/data \
  -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz \
  ghcr.io/scaleoutsystems/power-consumption:main \
  fedn run client --secure=True --force-ssl -in client.yaml 
