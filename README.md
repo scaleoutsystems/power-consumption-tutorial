@@ -36,13 +36,13 @@ The following command will connect your client to the FEDn network specified in 
 
 Here we assume that the FEDn network is up and running and you have obtained the connection file (client.yaml). In case you are participating in a Scaleout workshop, you will obtain the file from the workshop organizer. If you are working on the tutorial on your own, complete the instructions below in the section (Setting up the federation (model initiator)) before connecting the client.
 
-Start PowerShell and install 'virtualenv' if needed, then create a 'virtualenv' named 'scaleout_test' and activate it (just type deactivate to deactivate the virtualenv))
+Start PowerShell and install `virtualenv` if needed, then create a `virtualenv` named `scaleout_test` and activate it (just type deactivate to deactivate the virtualenv))
 
 ```sh
 pip install virtualenv
-python -m venv fedn_test
-fedn_test/Scripts/activate
-cd fedn_test
+python -m venv scaleout_test
+scaleout_test/Scripts/activate
+cd scaleout_test
 ```
 
 Clone this repository
@@ -64,10 +64,7 @@ Download the dataset and client.yaml file and move them to the 'Power-consumptio
  requirements-osx-m1.txt
 ```
 
-where data directory contains 'power.npz' file.
-
-
-
+where the 'data' directory contains the 'power.npz' file.
 
 The following command will connect your client to the FEDn network specified in client.yaml. Please fix the path of the power.npz and client.yaml files according to your local setup.
 
