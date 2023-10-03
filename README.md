@@ -36,7 +36,7 @@ The following command will connect your client to the FEDn network specified in 
 
 Here we assume that the FEDn network is up and running and you have obtained the connection file (client.yaml). In case you are participating in a Scaleout workshop, you will obtain the file from the workshop organizer. If you are working on the tutorial on your own, complete the instructions below in the section (Setting up the federation (model initiator)) before connecting the client.
 
-Start PowerShell and install `virtualenv` if needed, then create a `virtualenv` named `scaleout_test` and activate it (just type deactivate to deactivate the virtualenv))
+Start `PowerShell` and install `virtualenv` if needed, then create a `virtualenv` named `scaleout_test` and activate it (just type deactivate to deactivate the virtualenv))
 
 ```sh
 pip install virtualenv
