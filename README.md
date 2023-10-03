@@ -7,7 +7,7 @@ https://ieeexplore.ieee.org/document/9289758
 
 The model in this example is a simplified version of the model used in the article, to reduce the compute requirements client side. A normal laptop or a workstation should be able to sustain a few clients. The dataset required for this example is not available on a public server. However, Scaleout support staff can provide you with the data. Feel free to contact us. 
 
-## Prerequisites
+## Prerequisites, when running clients in Docker containers
 
 - [Python 3.8, 3.9 or 3.10](https://www.python.org/downloads)
 - [Docker](https://docs.docker.com/get-docker)
