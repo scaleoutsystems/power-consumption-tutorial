@@ -1,4 +1,4 @@
-# Power consumption prediction for data centers (TensorFlow/Keras)
+# Power consumption prediction for data centers (TensorFlow/Keras and PyTorch)
 
 This is an example of a neural network regression model in a federated setting. Time series data from two data centers in Sweden and Finland are used to predict the relationship between CPU and Network usage and power consumption. The tutorial is based on the following article that has more backgroud information on the use-case: 
 
@@ -30,15 +30,16 @@ cd Power-consumption-tutorial
 The following command will connect your client to the FEDn network specified in client.yaml. Please fix the path of the power.npz and client.yaml files according to your local setup.
 
 ```sh
- docker run -v $PWD/client.yaml:/app/client.yaml -v $PWD/data:/var/data -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz ghcr.io/scaleoutsystems/power-consumption:main fedn run client --secure=True --force-ssl -in client.yaml 
+ docker run -v $PWD/client.yaml:/app/client.yaml -v $PWD/data:/var/data -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz ghcr.io/scaleoutsystems/power-consumption:latest-pytorch fedn run client --secure=True --force-ssl -in client.yaml 
 ```
 ----
 
 In case you do not want to download an external container from a public repository, run the following two commands.
 
 ```sh
-docker build --no-cache -t power-consumption:latest .
-docker run -v $PWD/client.yaml:/app/client.yaml -v $PWD/data:/var/data -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz power-consumption:latest fedn run client --secure=True --force-ssl -in client.yaml
+cd Power-consumption-pytorch
+docker build --no-cache -t power-consumption:local .
+docker run -v $PWD/client.yaml:/app/client.yaml -v $PWD/data:/var/data -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz power-consumption:local fedn run client --secure=True --force-ssl -in client.yaml
 ```
 
 These two commands build a local container and start a new client based on a locally built client container. 
@@ -65,17 +66,14 @@ git clone https://github.com/scaleoutsystems/Power-consumption-tutorial.git
 cd Power-consumption-tutorial
 ```
 
-Download the dataset and client.yaml file and move them to the 'Power-consumption-tutorial' directory. The directory structure will look as follows:
+Download the 'dataset' and 'client.yaml' file and move them to the 'Power-consumption-tutorial' directory. The directory structure will look as follows:
 
 ```
- Dockerfile
  README.md
- bin
- client
  client.yaml
  data
- requirements.txt
- requirements-osx-m1.txt
+ Power-consumption-keras
+ Power-consumption-pytorch
 ```
 
 where the 'data' directory contains the 'power.npz' file.
@@ -83,7 +81,7 @@ where the 'data' directory contains the 'power.npz' file.
 The following command will connect your client to the FEDn network specified in 'client.yaml'. Please fix the path of the 'power.npz' and 'client.yaml' files according to your local setup.
 
 ```sh
-docker run -v $PWD/client.yaml:/app/client.yaml -v $PWD/data:/var/data -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz ghcr.io/scaleoutsystems/power-consumption:main fedn run client --secure=True --force-ssl -in client.yaml -in client.yaml
+docker run -v $PWD/client.yaml:/app/client.yaml -v $PWD/data:/var/data -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz ghcr.io/scaleoutsystems/power-consumption:latest-pytorch fedn run client --secure=True --force-ssl -in client.yaml -in client.yaml
 ```
 -----
 
@@ -92,7 +90,7 @@ docker run -v $PWD/client.yaml:/app/client.yaml -v $PWD/data:/var/data -e ENTRYP
 Clone this repository
 ```
 git clone https://github.com/scaleoutsystems/Power-consumption-tutorial.git
-cd Power-consumption-tutorial
+cd Power-consumption-tutorial/Power-consumption-pytorch
 ```
 
 Create virtual env (from root folder in the repository)
