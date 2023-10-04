@@ -14,23 +14,36 @@ The model in this example is a simplified version of the model used in the artic
 
 The example assumes working experience with Docker. 
 
-## Clone the repository
-
-```
-git clone https://github.com/scaleoutsystems/Power-consumption-tutorial.git
-```
-
 ## Attach clients to an existing FEDn Network (for workshop)
 
 ### Using Docker (not for M1, M2 macosx and Windows)
 
 Here we assume that the FEDn network is up and running and you have obtained the connection file (client.yaml). In case you are participating in a Scaleout workshop, you will obtain the file from the workshop organizer. If you are working on the tutorial on your own, complete the instructions below before connecting the client.
 
+Clone the repository
+
+```
+git clone https://github.com/scaleoutsystems/Power-consumption-tutorial.git
+cd Power-consumption-tutorial
+```
+
 The following command will connect your client to the FEDn network specified in client.yaml. Please fix the path of the power.npz and client.yaml files according to your local setup.
 
 ```sh
  docker run -v $PWD/client.yaml:/app/client.yaml -v $PWD/data:/var/data -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz ghcr.io/scaleoutsystems/power-consumption:main fedn run client --secure=True --force-ssl -in client.yaml 
 ```
+----
+
+In case you do not want to download an external container from a public repository, run the following two commands.
+
+```sh
+docker build --no-cache -t power-consumption:latest .
+docker run -v $PWD/client.yaml:/app/client.yaml -v $PWD/data:/var/data -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz power-consumption:latest fedn run client --secure=True --force-ssl -in client.yaml
+```
+
+These two commands build a local container and start a new client based on a locally built client container. 
+
+----
 
 ### Using Docker on Windows
 
@@ -49,6 +62,7 @@ Clone this repository
 
 ```sh
 git clone https://github.com/scaleoutsystems/Power-consumption-tutorial.git
+cd Power-consumption-tutorial
 ```
 
 Download the dataset and client.yaml file and move them to the 'Power-consumption-tutorial' directory. The directory structure will look as follows:
@@ -66,17 +80,19 @@ Download the dataset and client.yaml file and move them to the 'Power-consumptio
 
 where the 'data' directory contains the 'power.npz' file.
 
-The following command will connect your client to the FEDn network specified in client.yaml. Please fix the path of the power.npz and client.yaml files according to your local setup.
+The following command will connect your client to the FEDn network specified in 'client.yaml'. Please fix the path of the 'power.npz' and 'client.yaml' files according to your local setup.
 
 ```sh
 docker run -v $PWD/client.yaml:/app/client.yaml -v $PWD/data:/var/data -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz ghcr.io/scaleoutsystems/power-consumption:main fedn run client --secure=True --force-ssl -in client.yaml -in client.yaml
 ```
+-----
 
 ### Nativly on your host (without docker)
 
 Clone this repository
 ```
 git clone https://github.com/scaleoutsystems/Power-consumption-tutorial.git
+cd Power-consumption-tutorial
 ```
 
 Create virtual env (from root folder in the repository)
@@ -111,6 +127,8 @@ Start the client (assumes you have the client config file client.yaml)
 fedn run client --secure=True --force-ssl -in client.yaml
 ```
 
+-----
+
 ## Extra (not for workshop): Setting up the federation (model initiator) 
 
 These instructions are for users that want to learn to deploy and intiatialize the federated network (model initiator). 
@@ -123,9 +141,9 @@ There are two main options to deploy a FEDn network:
 
 ### Preparing the environment, the compute package and the seed model.
 
-Clone above-mentioned FEDn repository in step-2. Locate into the directory, pick one of the available examples, then:
+Clone the above-mentioned FEDn repository in step 2. Locate into the directory, pick one of the available examples, then:
 
-Initialize a virtual enviroment with all of the required dependencies.
+Initialize a virtual environment with all of the required dependencies.
 ```sh
 bin/init_venv.sh
 ```
