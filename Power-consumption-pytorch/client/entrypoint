@@ -1,0 +1,219 @@
+#!./.power-consumption-pytorch/bin/python
+
+import collections
+import json
+import math
+import os
+
+import docker
+import fire
+import numpy as np
+import torch
+from fedn.utils.pytorchhelper import PytorchHelper
+from torch.nn import Linear
+from torch.nn import ReLU
+from torch.nn import Sigmoid
+from torch.nn import Module
+from torch.optim import SGD
+
+from torch.nn.init import kaiming_uniform_
+from torch.nn.init import xavier_uniform_
+
+def _get_data_path():
+    # Figure out FEDn client number from container name
+    client = docker.from_env()
+    container = client.containers.get(os.environ['HOSTNAME'])
+    number = container.name[-1]
+
+    # Return data path
+    return f"/var/data/clients/{number}/power.npz"
+
+def _compile_model():
+   
+
+    class Net(torch.nn.Module):
+        def __init__(self):
+            super(Net, self).__init__()
+            
+            self.hidden1 = torch.nn.Linear(4, 64)
+            kaiming_uniform_(self.hidden1.weight, nonlinearity='relu')
+            self.act1 = ReLU()
+
+            self.hidden2 = Linear(64, 32)
+            kaiming_uniform_(self.hidden2.weight, nonlinearity='relu')
+            self.act2 = ReLU() 
+
+            self.hidden3 = Linear(32, 1)
+            xavier_uniform_(self.hidden3.weight)
+            
+
+        def forward(self, x):
+            
+            # input to first hidden layer
+            x = self.hidden1(x)
+            x = self.act1(x)
+            
+            # second hidden layer
+            x = self.hidden2(x)
+            x = self.act2(x)
+            
+            # third hidden layer and output
+            x = self.hidden3(x)
+            #x = self.act3(x) 
+            
+            return x
+
+    # Return model
+    return Net()
+
+
+def _load_model(model_path):
+
+    helper = PytorchHelper()
+    weights_np = helper.load_model(model_path)
+    weights = collections.OrderedDict()
+    for w in weights_np:
+        weights[w] = torch.tensor(weights_np[w])
+    model = _compile_model()
+    model.load_state_dict(weights)
+    model.eval()
+    return model
+
+
+def _load_data(data_path, is_train=True):
+    # Load data
+    if data_path is None:
+        data = np.load(_get_data_path())
+    else:
+        data = np.load(data_path)
+
+    if is_train:
+        X = data['x_train']
+        y = data['y_train']
+    else:
+        X = data['x_test']
+        y = data['y_test']
+
+    return X, y
+
+
+def init_seed(out_path='seed.npz'):
+    
+    #Init and save
+    model = _compile_model()
+    _save_model(model, out_path)
+
+def _save_model(model, out_path):
+
+    weights = model.state_dict()
+    weights_np = collections.OrderedDict()
+    for w in weights:
+        weights_np[w] = weights[w].cpu().detach().numpy()
+    helper = PytorchHelper()
+    helper.save_model(weights, out_path)
+
+
+def train(in_model_path, out_model_path, data_path=None, batch_size=500, epochs=1, lr=0.001):
+    # Load data
+    x_train, y_train = _load_data(data_path)
+
+    # Load model
+    model = _load_model(in_model_path)
+
+    # Train
+    optimizer = torch.optim.SGD(model.parameters(), lr=lr)
+    
+    print ('len(x_train): ',len(x_train))
+
+    n_batches = int(math.ceil(len(x_train) / batch_size))
+    print ('n_batches:', n_batches)
+    criterion = torch.nn.L1Loss()
+    
+    print ('model shape: ', model) 
+
+    
+    for e in range(epochs):  # epoch loop
+        for b in range(n_batches):  # batch loop
+            # Retrieve current batch
+            batch_x_tmp = torch.from_numpy(x_train[b * batch_size:(b + 1) * batch_size])
+            batch_x = torch.tensor(batch_x_tmp, dtype=torch.float32)
+            
+            batch_y_tmp = torch.from_numpy(np.expand_dims(y_train[b * batch_size:(b + 1) * batch_size],-1))
+            batch_y = torch.tensor(batch_y_tmp, dtype=torch.float32) 
+
+            # Train on batch
+            optimizer.zero_grad()
+            #print('batch x shape: ', batch_x.shape )
+            #print('batch y shape: ', batch_y.shape )
+            outputs = model(batch_x)
+            
+            loss = criterion(outputs, batch_y)
+            loss.backward()
+            optimizer.step()
+            # Log
+            if b % 100 == 0:
+                print(
+                    f"Epoch {e}/{epochs-1} | Batch: {b}/{n_batches-1} | Loss: {loss.item()}")
+
+
+    # Save
+    _save_model(model, out_model_path)
+
+def validate(in_model_path, out_json_path, data_path=None):
+    # Load data
+    x_train, y_train = _load_data(data_path)
+    x_test, y_test = _load_data(data_path, is_train=False)
+
+    # Load model
+    model = _load_model(in_model_path)
+
+    # Evaluate
+    criterion_mae = torch.nn.L1Loss()
+    criterion_mse = torch.nn.MSELoss() 
+    with torch.no_grad():
+        
+        x_train_t = torch.tensor(x_train, dtype=torch.float32)
+        train_out = model(x_train_t)
+
+        y_train = torch.from_numpy(np.expand_dims(y_train,-1))
+        y_train_t = torch.tensor(y_train, dtype=torch.float32) 
+        
+        training_loss_mae = criterion_mae(train_out, y_train_t)
+        training_loss_mse = criterion_mse(train_out, y_train_t)
+
+        x_test_t = torch.tensor(x_test, dtype=torch.float32)
+        test_out = model(x_test_t)
+       
+        y_test = torch.from_numpy(np.expand_dims(y_test,-1))
+        y_test_t = torch.tensor(y_test, dtype=torch.float32)
+
+        test_loss_mae = criterion_mae(test_out, y_test_t)
+        test_loss_mse = criterion_mse(test_out, y_test_t)
+
+        #print('test_mae: ', test_loss_mae.item())
+        #print('test_mse: ', test_loss_mse.item())
+        #print('training_mae: ', training_loss_mae.item())
+        #print('training_mse: ', training_loss_mse.item())
+
+    # JSON schema
+    report = {
+        "test_mae": str(test_loss_mae.item()),
+        "test_mse": str(test_loss_mse.item()),
+        "training_mae": str(training_loss_mae.item()),
+        "training_mse": str(training_loss_mse.item()),
+
+    }
+
+    # Save JSON
+    with open(out_json_path, "w") as fh:
+        fh.write(json.dumps(report))
+
+
+if __name__ == '__main__':
+    fire.Fire({
+        'init_seed': init_seed,
+        'train': train,
+        'validate': validate,
+        '_get_data_path': _get_data_path,  # for testing
+    })
+
