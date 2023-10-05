@@ -16,9 +16,13 @@ The example assumes working experience with Docker.
 
 ## Attach clients to an existing FEDn Network (for workshop)
 
-### Using Docker (not for M1, M2 macosx and Windows)
+Important: For the workshop, we will use PyTorch based compute-package. 
+
+### Using Docker (Linux and  MacOS)
 
 Here we assume that the FEDn network is up and running and you have obtained the connection file (client.yaml). In case you are participating in a Scaleout workshop, you will obtain the file from the workshop organizer. If you are working on the tutorial on your own, complete the instructions below before connecting the client.
+
+NOTE: In case you want to run a client on M1 or M2 macOS using TensorFlow and Keras, make sure you have a compatible framework version.
 
 Clone the repository
 
