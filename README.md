@@ -34,7 +34,7 @@ cd Power-consumption-tutorial
 The following command will connect your client to the FEDn network specified in client.yaml. Please fix the path of the power.npz and client.yaml files according to your local setup.
 
 ```sh
- docker run -v $PWD/client.yaml:/app/client.yaml -v $PWD/data:/var/data -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz ghcr.io/scaleoutsystems/power-consumption:latest-pytorch fedn run client --secure=True --force-ssl -in client.yaml 
+ docker run -v $PWD/client.yaml:/app/client.yaml -v $PWD/data:/var/data -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz ghcr.io/scaleoutsystems/power-consumption:pyt_v0.6.0 fedn run client --secure=True --force-ssl -in client.yaml 
 ```
 ----
 
@@ -85,7 +85,7 @@ where the 'data' directory contains the 'power.npz' file.
 The following command will connect your client to the FEDn network specified in 'client.yaml'. Please fix the path of the 'power.npz' and 'client.yaml' files according to your local setup.
 
 ```sh
-docker run -v $PWD/client.yaml:/app/client.yaml -v $PWD/data:/var/data -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz ghcr.io/scaleoutsystems/power-consumption:latest-pytorch fedn run client --secure=True --force-ssl -in client.yaml -in client.yaml
+docker run -v $PWD/client.yaml:/app/client.yaml -v $PWD/data:/var/data -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz ghcr.io/scaleoutsystems/power-consumption:pyt_v0.6.0 fedn run client --secure=True --force-ssl -in client.yaml -in client.yaml
 ```
 -----
 
