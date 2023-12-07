@@ -15,8 +15,8 @@ The model in this example is a simplified version of the model used in the artic
 The example assumes working experience with Docker. 
 
 ## Attach clients to an existing FEDn Network (for workshop)
-[!IMPORTANT]
-For the workshop, we will use PyTorch based compute-package. The workshop leader will provide the dataset and the client configuration file, client.yaml.  
+
+[!IMPORTANT]  For the workshop, we will use PyTorch based compute-package. The workshop leader will provide the dataset and the client configuration file, client.yaml.  
 
 ### Using Docker (Linux and  MacOS)
 
