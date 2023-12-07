@@ -16,7 +16,8 @@ The example assumes working experience with Docker.
 
 ## Attach clients to an existing FEDn Network (for workshop)
 
-[!IMPORTANT]  For the workshop, we will use PyTorch based compute-package. The workshop leader will provide the dataset and the client configuration file, client.yaml.  
+> [!IMPORTANT] 
+> For the workshop, we will use PyTorch based compute-package. The workshop leader will provide the dataset and the client configuration file, client.yaml.  
 
 *** For the workshop, we will use PyTorch based compute-package. The workshop leader will provide the dataset and the client configuration file, client.yaml. ***
 
