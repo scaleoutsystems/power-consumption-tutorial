@@ -18,6 +18,8 @@ The example assumes working experience with Docker.
 
 [!IMPORTANT]  For the workshop, we will use PyTorch based compute-package. The workshop leader will provide the dataset and the client configuration file, client.yaml.  
 
+*** For the workshop, we will use PyTorch based compute-package. The workshop leader will provide the dataset and the client configuration file, client.yaml. ***
+
 ### Using Docker (Linux and  MacOS)
 
 Here we assume that the FEDn network is up and running and you have obtained the connection file (client.yaml). In case you are participating in a Scaleout workshop, you will obtain the file from the workshop organizer. If you are working on the tutorial on your own, complete the instructions below before connecting the client.
