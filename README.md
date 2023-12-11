@@ -2,7 +2,7 @@
 
 # Power consumption prediction for data centers (TensorFlow/Keras and PyTorch)
 
-This is an example of a neural network regression model in a federated setting. Time series data from two data centers in Sweden and Finland are used to predict the relationship between CPU and Network usage and power consumption. The tutorial is based on the following article that has more backgroud information on the use-case: 
+This is an example of a neural network regression model in a federated setting. Time series data from two data centers in Sweden and Finland are used to predict the relationship between CPU and Network usage and power consumption. The tutorial is based on the following article that has more background information on the use-case: 
 
 - Towards Smart e-Infrastructures, A Community Driven Approach Based on Real Datasets
 https://ieeexplore.ieee.org/document/9289758
@@ -36,10 +36,10 @@ git clone https://github.com/scaleoutsystems/Power-consumption-tutorial.git
 cd Power-consumption-tutorial
 ```
 
-The following command will connect your client to the FEDn network specified in client.yaml. Please fix the path of the power.npz and client.yaml files according to your local setup.
+The following command will connect your client to the network specified in `client.yaml`. Please fix the path of the `power.npz` and `client.yaml` files according to your local setup.
 
 > [!NOTE]
-> Make sure that the Docker deamon is running on your system. 
+> Make sure that the Docker daemon is running on your system. 
 
 ```sh
  docker run -v $PWD/client.yaml:/app/client.yaml -v $PWD/data:/var/data -e ENTRYPOINT_OPTS=--data_path=/var/data/power.npz ghcr.io/scaleoutsystems/power-consumption:pyt_v0.6.0 fedn run client --secure=True --force-ssl -in client.yaml 
@@ -79,9 +79,9 @@ cd Power-consumption-tutorial
 ```
 
 > [!NOTE]
-> The workshop leader will provide the dataset and the client configuration file, client.yaml.
+> The workshop leader will provide the dataset and the client configuration file, `client.yaml`.
 
-Download the 'dataset' and 'client.yaml' file and move them to the 'Power-consumption-tutorial' directory. The directory structure will look as follows:
+Download the `dataset` and `client.yaml` file and move them to the `Power-consumption-tutorial` directory. The directory structure will look as follows:
 
 ```
  README.md
@@ -91,9 +91,9 @@ Download the 'dataset' and 'client.yaml' file and move them to the 'Power-consum
  Power-consumption-pytorch
 ```
 
-where the 'data' directory contains the 'power.npz' file.
+where the `data` directory contains the `power.npz` file.
 
-The following command will connect your client to the FEDn network specified in 'client.yaml'. Please fix the path of the 'power.npz' and 'client.yaml' files according to your local setup.
+The following command will connect your client to the network specified in `client.yaml`. Please fix the path of the `power.npz` and `client.yaml` files according to your local setup.
 
 > [!NOTE]
 > Make sure that the Docker deamon is running on your system.
@@ -103,7 +103,7 @@ docker run -v $PWD/client.yaml:/app/client.yaml -v $PWD/data:/var/data -e ENTRYP
 ```
 -----
 
-### Nativly on your host (without docker)
+### Natively on your host (without docker)
 
 Clone this repository
 ```
@@ -133,12 +133,12 @@ Activate the virtual env
 source .power-consumption-keras/bin/activate
 ```
 
-Specify absolute path to your local data is located (replace /path/to/)
+Specify absolute path to your local data is located (replace `/path/to/`)
 ```
 export ENTRYPOINT_OPTS=--data_path=/path/to/power.npz
 ```
 
-Start the client (assumes you have the client config file client.yaml)
+Start the client (assumes you have the client config file `client.yaml`)
 ```
 fedn run client --secure=True --force-ssl -in client.yaml
 ```
@@ -172,14 +172,14 @@ Build the compute package and seed model.
 ```sh
 bin/build.sh
 ```
-You should now have two files, 'package.tar.gz' and 'seed.npz'. Initialize the FEDn network using these, and then follow instructions above to connect clients. 
+You should now have two files, `package.tar.gz` and `seed.npz`. Initialize the FEDn network using these, and then follow instructions above to connect clients. 
 
 Build the environment (Docker image) 
 ```sh
 docker build -t scaleoutsystems/power-consumption:main
 ```
 
-(If you have not made local changes to the package and/or requirements.txt, you can also use the pre-build package available in this repository, ghcr.io/scaleoutsystems/power-consumption:main)
+(If you have not made local changes to the package and/or requirements.txt, you can also use the pre-build package available in this repository, ghcr.io/scaleoutsystems/power-consumption:pyt_v0.6.0)
 
 You can now connect the client following the instructions above. Note that depending on how you deployed the network, you might need to modify some of the command line options to fedn. Refer to the [FEDn documentation](https://github.com/scaleoutsystems/fedn). 
 
