@@ -152,6 +152,10 @@ There are two main options to deploy a FEDn network:
 
 1. Obtain an account in Scaleout Studio. Apply here: [https://studio.scaleoutsystems.com/signup/](https://studio.scaleoutsystems.com/signup/) and contact Scaleout staff in the [Discord server](https://discord.gg/KMg4VwszAd) for this option. 
 2. [Deploy a FEDn network from scratch](https://github.com/scaleoutsystems/fedn) on your own machine(s). 
+3. A partition of the power consumption test dataset can be downloaded using the following command:
+```sh
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1r_dlOEZAnCLhRjY1qFwlRAkeB4PvhgAU' -O power.npz
+```
 
 ### Preparing the environment, the compute package and the seed model.
 
