@@ -1,5 +1,4 @@
-> ![Power Consumption Example.]
-> (https://github.com/scaleoutsystems/Power-consumption-tutorial/blob/main/Banner.png)
+![Power Consumption Example.](https://github.com/scaleoutsystems/Power-consumption-tutorial/blob/main/Banner.png)
 
 # Power consumption prediction for data centers (TensorFlow/Keras and PyTorch)
 
