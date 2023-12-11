@@ -179,7 +179,7 @@ Build the environment (Docker image)
 docker build -t scaleoutsystems/power-consumption:main
 ```
 
-(If you have not made local changes to the package and/or requirements.txt, you can also use the pre-build package available in this repository, ghcr.io/scaleoutsystems/power-consumption:pyt_v0.6.0)
+(If you have not made local changes to the package and/or requirements.txt, you can also use the pre-build package available in this repository, `ghcr.io/scaleoutsystems/power-consumption:pyt_v0.6.0`)
 
 You can now connect the client following the instructions above. Note that depending on how you deployed the network, you might need to modify some of the command line options to fedn. Refer to the [FEDn documentation](https://github.com/scaleoutsystems/fedn). 
 
