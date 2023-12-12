@@ -7,9 +7,17 @@ This is an example of a neural network regression model in a federated setting. 
 - Towards Smart e-Infrastructures, A Community Driven Approach Based on Real Datasets
 https://ieeexplore.ieee.org/document/9289758
 
-![Power Consumption Example.](https://github.com/scaleoutsystems/Power-consumption-tutorial/blob/main/overview.png)
+The model in this example is a simplified version of the model used in the article, aimed at reducing the compute requirements on the client side. A typical laptop or workstation should be capable of handling multiple clients. A partition of the dataset needed for this example is publically accessible.
+```sh
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1r_dlOEZAnCLhRjY1qFwlRAkeB4PvhgAU' -O power.npz
+```
 
-The model in this example is a simplified version of the model used in the article, to reduce the compute requirements client side. A normal laptop or a workstation should be able to sustain a few clients. The dataset required for this example is not available on a public server. However, Scaleout support staff can provide you with the data. Feel free to contact us. 
+To access the complete dataset, please get in touch with Scaleout staff. The following figure illustrates the overall concept of the example.
+
+![Overview figure highlighting input parameters and expected output.](https://github.com/scaleoutsystems/Power-consumption-tutorial/blob/main/overview.png)
+
+In case you have any questions, feel free to contact us. 
+
 
 ## Prerequisites, when running clients in Docker containers
 
