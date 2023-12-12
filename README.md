@@ -1,11 +1,13 @@
-![Power Consumption Example.](https://github.com/scaleoutsystems/Power-consumption-tutorial/blob/main/Banner.png)
-
 # Power consumption prediction for data centers (TensorFlow/Keras and PyTorch)
+
+![Power Consumption Example.](https://github.com/scaleoutsystems/Power-consumption-tutorial/blob/main/banner.png)
 
 This is an example of a neural network regression model in a federated setting. Time series data from two data centers in Sweden and Finland are used to predict the relationship between CPU and Network usage and power consumption. The tutorial is based on the following article that has more background information on the use-case: 
 
 - Towards Smart e-Infrastructures, A Community Driven Approach Based on Real Datasets
 https://ieeexplore.ieee.org/document/9289758
+
+![Power Consumption Example.](https://github.com/scaleoutsystems/Power-consumption-tutorial/blob/main/overview.png)
 
 The model in this example is a simplified version of the model used in the article, to reduce the compute requirements client side. A normal laptop or a workstation should be able to sustain a few clients. The dataset required for this example is not available on a public server. However, Scaleout support staff can provide you with the data. Feel free to contact us. 
 
