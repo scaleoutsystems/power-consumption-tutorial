@@ -66,7 +66,10 @@ For Linux and MacOS
    wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1r_dlOEZAnCLhRjY1qFwlRAkeB4PvhgAU' -O power.npz
 ```
 
-For Windows, download the dataset using the link: `https://docs.google.com/uc?export=download&id=1r_dlOEZAnCLhRjY1qFwlRAkeB4PvhgAU`
+For Windows users, download the dataset using your preferred browser or tool by following the link below.
+
+`https://docs.google.com/uc?export=download&id=1r_dlOEZAnCLhRjY1qFwlRAkeB4PvhgAU`
+
 
 
 Using FEDn Studio
