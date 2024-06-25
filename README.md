@@ -39,7 +39,15 @@ Clone this repository, then locate into this directory:
 
 ```sh
    https://github.com/scaleoutsystems/power-consumption-tutorial.git
+```
+For PyTorch example:
+
+```sh
    cd power-consumption-tutorial/Power-consumption-pytorch
+```
+Or 
+```sh
+   cd power-consumption-tutorial/Power-consumption-keras
 ```
 
 Create the compute package:
