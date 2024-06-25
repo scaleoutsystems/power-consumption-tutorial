@@ -33,20 +33,20 @@ Install fedn:
 
 ```sh
    pip install fedn
-```sh
+```
 
 Clone this repository, then locate into this directory:
 
 ```sh
    https://github.com/scaleoutsystems/power-consumption-tutorial.git
    cd power-consumption-tutorial/Power-consumption-pytorch
-```sh
+```
 
 Create the compute package:
 
 ```sh
    fedn package create --path client
-```sh
+```
 
 This should create a file 'package.tgz' in the project folder.
 
@@ -54,7 +54,7 @@ Next, generate a seed model (the first model in a global model trail):
 
 ```sh
    fedn run build --path client
-```sh
+```
 
 This will create a seed model called 'seed.npz' in the root of the project. This step will take a few minutes, depending on hardware and internet connection (builds a virtualenv).
 
