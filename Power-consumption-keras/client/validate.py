@@ -39,17 +39,13 @@ def validate(in_model_path, out_json_path, data_path=None):
     model.set_weights(weights)
 
     # Evaluate
-    model_score = model.evaluate(x_train, y_train)
+    model_score_train = model.evaluate(x_train, y_train)
     model_score_test = model.evaluate(x_test, y_test)
-    y_pred = model.predict(x_test)
-    y_pred = np.argmax(y_pred, axis=1)
 
     # JSON schema
     report = {
-        "training_loss": model_score[0],
-        "training_accuracy": model_score[1],
-        "test_loss": model_score_test[0],
-        "test_accuracy": model_score_test[1],
+        "training_mse": model_score_train[0],
+        "test_mse": model_score_test[0]
     }
 
     # Save JSON
