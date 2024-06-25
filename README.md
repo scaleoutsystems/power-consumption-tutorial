@@ -45,7 +45,9 @@ For PyTorch example:
 ```sh
    cd power-consumption-tutorial/Power-consumption-pytorch
 ```
-Or 
+
+Or for Keras example: 
+
 ```sh
    cd power-consumption-tutorial/Power-consumption-keras
 ```
