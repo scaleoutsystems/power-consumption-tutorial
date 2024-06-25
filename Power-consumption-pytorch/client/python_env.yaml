@@ -2,8 +2,10 @@ name: power-consumption-pytorch
 build_dependencies:
   - pip
   - setuptools
-  - wheel==0.37.1
+  - wheel
 dependencies:
   - torch==2.2.1
   - torchvision==0.17.1
-  - fedn==0.9.0
+  - fedn
+  -  numpy==1.26.4
+
