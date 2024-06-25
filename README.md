@@ -95,15 +95,11 @@ For convenience, there is a Docker image hosted on ghrc.io with fedn preinstalle
 ```sh
 docker run \
   -v $PWD/client.yaml:/app/client.yaml \
-  -v $PWD/client_settings.yaml:/app/client_settings.yaml \
-  -v $PWD/data:/app/data \
+  -v $PWD/data/power.npz:/app/data/power.npz \
   -e FEDN_PACKAGE_EXTRACT_DIR=package \
-  -e FEDN_DATA_PATH=/app/data/ \
-  -e FEDN_CLIENT_SETTINGS_PATH=/app/client_settings.yaml \
-  -e FEDN_DATA_SPLIT_INDEX=0 \
+  -e FEDN_DATA_PATH=/app/data/power.npz \
   ghcr.io/scaleoutsystems/fedn/fedn:0.9.0 run client -in client.yaml --force-ssl --secure=True
 ```
-
 
 Now on the session tab in the Studio, click on the start session to initiate the training rounds. 
 
